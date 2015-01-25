@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FiTracker</string>
+
+    <string name="ah_profile">Profile</string>
+    <string name="ah_exercises">Exercises</string>
+    <string name="ah_log_workout">Log Workout</string>
+    <string name="ah_workout_history">Workout History</string>
+    <string name="ah_workout_progress">Progress</string>
 </resources>
