@@ -6,4 +6,10 @@
     <string name="ah_log_workout">Log Workout</string>
     <string name="ah_workout_history">Workout History</string>
     <string name="ah_workout_progress">Progress</string>
+
+    <!-- Error Messages -->
+    <string name="init_error">There was a problem initializing the app... sorry.</string>
+
+    <!-- Asset locations -->
+    <string name="asset_exercises">exercises.json</string>
 </resources>

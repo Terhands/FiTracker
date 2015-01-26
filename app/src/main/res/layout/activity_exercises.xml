@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.terhands.fitracker.views.collapsinglist.listparent.ListParentView
+        android:id="@+id/ae_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parent"/>
+
+    <com.terhands.fitracker.views.collapsinglist.listchild.ListChildView
+        android:id="@+id/ae_child"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Child1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Child2"/>
+
+    </com.terhands.fitracker.views.collapsinglist.listchild.ListChildView>
+
+</LinearLayout>

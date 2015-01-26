@@ -3,13 +3,14 @@ package com.terhands.fitracker.views.collapsinglist.listchild;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.terhands.fitracker.views.collapsinglist.CLVAnimationUtils;
 
 /**
  * Defaults to being in an expanded state
  */
-public class ListChildView extends View {
+public class ListChildView extends LinearLayout {
 
     private ViewState viewState;
 

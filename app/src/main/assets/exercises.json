@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Strength Training (Upper body)",
+        "exercises": [
+            {"name": "Bicep Curl", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]},
+            {"name": "Bench Press", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]},
+            {"name": "Upright Row", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]}
+        ]
+    },
+    {
+        "name": "Strength Training (Core)",
+        "exercises": [
+            {"name": "Back Extensions", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]}
+        ]
+    },
+    {
+        "name": "Strength Training (Legs)",
+        "exercises": [
+            {"name": "Squats", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]},
+            {"name": "Calf Extensions", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]},
+            {"name": "Leg Raises", "properties": [
+                {"name": "reps", "unit": "#"},
+                {"name": "weight", "unit": "lbs"},
+                {"name": "sets", "unit": "#"}
+            ]}
+        ]
+    },
+    {
+        "name": "Endurance Training",
+        "exercises": [
+            {"name": "Sprinting", "properties": [
+                {"name": "duration", "unit": "ms"},
+                {"name": "distance", "unit": "km"}
+            ]},
+            {"name": "Running", "properties": [
+                {"name": "duration", "unit": "ms"},
+                {"name": "distance", "unit": "km"}
+            ]},
+            {"name": "Swimming", "properties": [
+                {"name": "duration", "unit": "ms"},
+                {"name": "distance", "unit": "km"}
+            ]},
+            {"name": "Walking", "properties": [
+                {"name": "duration", "unit": "ms"},
+                {"name": "distance", "unit": "km"}
+            ]},
+            {"name": "Biking", "properties": [
+                {"name": "duration", "unit": "ms"},
+                {"name": "distance", "unit": "km"}
+            ]}
+        ]
+    }
+]
