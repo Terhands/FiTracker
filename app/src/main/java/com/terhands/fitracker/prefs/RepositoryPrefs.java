@@ -16,7 +16,7 @@ public final class RepositoryPrefs {
     public static void setInitializationComplete(Context context, boolean isComplete) {
         SharedPreferences prefs = context.getSharedPreferences(REPO_PREFS, Context.MODE_PRIVATE);
         prefs.edit()
-             .putBoolean(REPO_PREFS, isComplete)
+             .putBoolean(PREF_IS_DB_INITIALIZED, isComplete)
              .apply();
     }
 }

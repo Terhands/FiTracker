@@ -35,6 +35,8 @@ public class StartupTask extends AsyncTask<Void, Void, Boolean> {
             realm.createAllFromJson(ExerciseCategory.class, inputStream);
             realm.commitTransaction();
 
+            return true;
+
         } catch(IOException e) {
             e.printStackTrace();
         } finally {
