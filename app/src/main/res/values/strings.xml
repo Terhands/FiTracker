@@ -15,6 +15,7 @@
 
     <!-- Save Exercises -->
     <string name="name_hint">Exercise Name</string>
+    <string name="save">Save</string>
 
     <!-- Error Messages -->
     <string name="init_error">There was a problem initializing the app... sorry.</string>

@@ -31,7 +31,13 @@ public class TrackingProperty extends RealmObject {
 
 
     public enum Property {
-        REPS, WEIGHT, SETS, DURATION, DISTANCE;
+        REPS("#"), WEIGHT("lbs"), SETS("#"), DURATION("ms"), DISTANCE("km");
+
+        public final String unit;
+
+        private Property(String unit) {
+            this.unit = unit;
+        }
 
         public static Property getPropertyByName(String name) {
             for(Property p : Property.values()) {

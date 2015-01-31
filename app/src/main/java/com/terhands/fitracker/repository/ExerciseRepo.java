@@ -3,6 +3,9 @@ package com.terhands.fitracker.repository;
 import android.content.Context;
 
 import com.terhands.fitracker.models.Exercise;
+import com.terhands.fitracker.models.TrackingProperty;
+
+import java.util.List;
 
 public class ExerciseRepo extends BaseRepo<Exercise> {
 
@@ -15,13 +18,17 @@ public class ExerciseRepo extends BaseRepo<Exercise> {
     }
 
     @Override
-    protected Exercise getSavedRealmObject(Exercise exercise) {
-        return realm.where(Exercise.class).equalTo("name", exercise.getName()).findFirst();
+    protected Exercise getSavedRealmObject(String key) {
+        return getByName(key);
     }
 
     @Override
     protected void updateValues(Exercise updated, Exercise toSave) {
-        toSave.setName(updated.getName());
-        toSave.setProperties(updated.getProperties());
+        if(toSave != null) {
+            toSave.getProperties().clear();
+            List<TrackingProperty> newProperties = realm.copyToRealm(updated.getProperties());
+            toSave.getProperties().addAll(newProperties);
+            toSave.setName(updated.getName());
+        }
     }
 }

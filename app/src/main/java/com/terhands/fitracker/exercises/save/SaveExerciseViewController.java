@@ -13,6 +13,8 @@ import com.terhands.fitracker.models.TrackingProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
+
 public class SaveExerciseViewController {
 
     private final EditText name;
@@ -27,19 +29,42 @@ public class SaveExerciseViewController {
         addPropertyViews(activity);
     }
 
+    public void initState(Exercise exercise) {
+        if(exercise != null) {
+            name.setText(exercise.getName());
+            initPropertyStates(exercise);
+        }
+    }
+
+    public String getExerciseName() {
+        return name.getText().toString();
+    }
+
+    public RealmList<TrackingProperty> getSelectedProperties() {
+        RealmList<TrackingProperty> selected = new RealmList<>();
+
+        for(CheckBox propertySelector : trackedProperties) {
+            if(propertySelector.isChecked()) {
+
+                String name = propertySelector.getText().toString();
+                TrackingProperty.Property p = TrackingProperty.Property.getPropertyByName(name);
+
+                TrackingProperty tp = new TrackingProperty();
+                tp.setName(name);
+                tp.setUnit(p.unit);
+
+                selected.add(tp);
+            }
+        }
+        return selected;
+    }
+
     private void addPropertyViews(Context context) {
         for(TrackingProperty.Property property : TrackingProperty.Property.values()) {
             CheckBox selector = (CheckBox) LayoutInflater.from(context).inflate(R.layout.property_selector, null, false);
             selector.setText(property.toString());
             trackedProperties.add(selector);
             propertiesContainer.addView(selector);
-        }
-    }
-
-    public void initState(Exercise exercise) {
-        if(exercise != null) {
-            name.setText(exercise.getName());
-            initPropertyStates(exercise);
         }
     }
 

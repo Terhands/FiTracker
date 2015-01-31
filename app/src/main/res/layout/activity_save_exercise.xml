@@ -12,7 +12,8 @@
         <EditText
             android:id="@+id/ase_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/name_hint" />
 
         <LinearLayout
             android:id="@+id/ase_tracking_properties"
