@@ -1,5 +1,6 @@
 package com.terhands.fitracker.exercises.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import com.terhands.fitracker.R;
 import com.terhands.fitracker.exercises.list.viewholders.ExerciseCategoryViewController;
 import com.terhands.fitracker.exercises.list.viewholders.ExerciseViewController;
+import com.terhands.fitracker.exercises.save.SaveExerciseActivity;
 import com.terhands.fitracker.models.Exercise;
 import com.terhands.fitracker.models.ExerciseCategory;
 import com.terhands.fitracker.repository.ExerciseRepo;
@@ -29,12 +31,19 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
         setContentView(R.layout.activity_exercises);
 
         exerciseRepo = new ExerciseRepo(this);
+    }
+
+    @Override
+    protected void onResume() {
         buildExercisesView();
+
+        super.onResume();
     }
 
     private void buildExercisesView() {
 
         LinearLayout mainView = (LinearLayout) findViewById(R.id.ae_exercises);
+        mainView.removeAllViewsInLayout();
 
         Realm realm = Realm.getInstance(this);
         RealmResults<ExerciseCategory> categories = realm.where(ExerciseCategory.class)
@@ -65,7 +74,9 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO launch an edit activity for exercise
+                Intent intent = new Intent(BaseExercisesActivity.this, SaveExerciseActivity.class);
+                intent.putExtra(SaveExerciseActivity.EXTRA_EXERCISE_NAME, exercise.getName());
+                startActivity(intent);
             }
         };
     }

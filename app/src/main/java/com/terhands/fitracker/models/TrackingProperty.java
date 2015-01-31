@@ -12,15 +12,39 @@ public class TrackingProperty extends RealmObject {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(Property.getPropertyByName(name) != null) {
+            this.name = name;
+        }
     }
 
     public String getUnit() {
         return unit;
     }
 
+    public Property getProperty() {
+        return Property.getPropertyByName(getName());
+    }
+
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+
+    public enum Property {
+        REPS, WEIGHT, SETS, DURATION, DISTANCE;
+
+        public static Property getPropertyByName(String name) {
+            for(Property p : Property.values()) {
+                if(p.toStoredString().equals(name.toLowerCase())) {
+                    return p;
+                }
+            }
+            return null;
+        }
+
+        public String toStoredString() {
+            return toString().toLowerCase();
+        }
     }
 
 }

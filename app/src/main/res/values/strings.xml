@@ -13,6 +13,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <!-- Save Exercises -->
+    <string name="name_hint">Exercise Name</string>
+
     <!-- Error Messages -->
     <string name="init_error">There was a problem initializing the app... sorry.</string>
 
