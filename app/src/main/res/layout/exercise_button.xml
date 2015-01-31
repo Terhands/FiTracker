@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="20dp"
-    android:paddingRight="10dp"
-    android:textColor="@color/selector_text_secondary"
-    android:background="@drawable/selector_exercise"
-    android:gravity="left|center_vertical"/>
+    android:layout_margin="10dp"
+    android:background="@drawable/selector_exercise">
+
+    <TextView
+        android:id="@+id/eb_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:duplicateParentState="true"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/selector_text_secondary"
+        android:background="@null"
+        android:gravity="left|center_vertical"/>
+
+    <LinearLayout
+        android:id="@+id/eb_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/eb_text"
+        android:layout_alignBottom="@+id/eb_text"
+        android:gravity="right|center_vertical"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/eb_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/eb_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@android:drawable/ic_delete" />
+
+    </LinearLayout>
+
+</RelativeLayout>

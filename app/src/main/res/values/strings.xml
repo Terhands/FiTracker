@@ -7,6 +7,12 @@
     <string name="ah_workout_history">Workout History</string>
     <string name="ah_workout_progress">Progress</string>
 
+    <!-- Exercises Messages -->
+    <string name="delete_exercise_title">Delete %s</string>
+    <string name="delete_exercise_message">Are you sure you want to delete \'%s\'?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <!-- Error Messages -->
     <string name="init_error">There was a problem initializing the app... sorry.</string>
 

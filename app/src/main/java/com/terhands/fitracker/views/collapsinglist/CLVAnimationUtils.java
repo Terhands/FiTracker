@@ -11,7 +11,7 @@ import android.view.animation.Transformation;
  */
 public class CLVAnimationUtils {
 
-    public static void expand(final View v) {
+    public static void expand(final View v, int durationMs) {
         v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final int targetHeight = v.getMeasuredHeight();
 
@@ -34,11 +34,12 @@ public class CLVAnimationUtils {
         };
 
         // 1dp/ms
-        a.setDuration((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        int duration1dpPerMs = (int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density);
+        a.setDuration(durationMs > 0 ? durationMs : duration1dpPerMs);
         v.startAnimation(a);
     }
 
-    public static void collapse(final View v) {
+    public static void collapse(final View v, int durationMs) {
         final int initialHeight = v.getMeasuredHeight();
 
         Animation a = new Animation()
@@ -60,7 +61,8 @@ public class CLVAnimationUtils {
         };
 
         // 1dp/ms
-        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        int duration1dpPerMs = (int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density);
+        a.setDuration(durationMs > 0 ? durationMs : duration1dpPerMs);
         v.startAnimation(a);
     }
 }

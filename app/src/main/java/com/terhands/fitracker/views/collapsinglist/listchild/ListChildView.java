@@ -12,6 +12,7 @@ import com.terhands.fitracker.views.collapsinglist.CLVAnimationUtils;
  */
 public class ListChildView extends LinearLayout {
 
+    private static final int animateDuration = -1;
     private ViewState viewState;
 
     public ListChildView(Context context) {
@@ -43,9 +44,9 @@ public class ListChildView extends LinearLayout {
         viewState.toggleVisibility();
 
         if(viewState.isVisible()) {
-            CLVAnimationUtils.expand(this);
+            CLVAnimationUtils.expand(this, animateDuration);
         } else {
-            CLVAnimationUtils.collapse(this);
+            CLVAnimationUtils.collapse(this, animateDuration);
         }
     }
 }
