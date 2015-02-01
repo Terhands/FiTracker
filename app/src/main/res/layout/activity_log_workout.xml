@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightest_gray">
+
+    <RelativeLayout
+        android:id="@+id/alw_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_exercise">
+
+        <ImageView
+            android:id="@+id/alw_add_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_add"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/alw_add_text"
+            style="@style/TextSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/alw_add_icon"
+            android:layout_centerVertical="true"
+            android:text="@string/alw_log_exercise"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/darkest_gray"/>
+
+    <ListView
+        android:id="@+id/alw_exercise_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:divider="@color/dark_gray"/>
+
+</LinearLayout>

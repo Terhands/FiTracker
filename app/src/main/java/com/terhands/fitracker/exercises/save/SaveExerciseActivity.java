@@ -51,7 +51,7 @@ public class SaveExerciseActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_save_exercise, menu);
+        inflater.inflate(R.menu.menu_save, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -61,7 +61,7 @@ public class SaveExerciseActivity extends ActionBarActivity {
             case android.R.id.home:
                 finish();
                 break;
-            case R.id.mse_save:
+            case R.id.ms_save:
                 saveExercise();
                 finish();
                 break;

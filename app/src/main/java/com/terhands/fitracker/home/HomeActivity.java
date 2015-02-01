@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.terhands.fitracker.R;
 import com.terhands.fitracker.exercises.list.EditExercisesActivity;
+import com.terhands.fitracker.logworkout.LogWorkoutActivity;
 import com.terhands.fitracker.prefs.RepositoryPrefs;
 import com.terhands.fitracker.startup.StartupTask;
 
@@ -34,6 +35,7 @@ public class HomeActivity extends ActionBarActivity implements View.OnClickListe
                 startActivity(new Intent(this, EditExercisesActivity.class));
                 break;
             case R.id.ah_workout:
+                startActivity(new Intent(this, LogWorkoutActivity.class));
                 break;
             case R.id.ah_history:
                 break;

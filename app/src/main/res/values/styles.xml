@@ -5,4 +5,18 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TextBase" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:duplicateParentState">true</item>
+    </style>
+
+    <style name="TextPrimary" parent="@style/TextBase">
+        <item name="android:textColor">@color/selector_text_primary</item>
+    </style>
+
+    <style name="TextSecondary" parent="@style/TextBase">
+        <item name="android:textColor">@color/selector_text_secondary</item>
+    </style>
+
+
 </resources>

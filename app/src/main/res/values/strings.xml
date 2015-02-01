@@ -1,6 +1,11 @@
 <resources>
+
+    <!-- Common strings -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
     <string name="app_name">FiTracker</string>
 
+    <!-- Home Screen -->
     <string name="ah_profile">Profile</string>
     <string name="ah_exercises">Exercises</string>
     <string name="ah_log_workout">Log Workout</string>
@@ -13,8 +18,9 @@
 
     <!-- Save Exercises -->
     <string name="name_hint">Exercise Name</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
+
+    <!-- Workouts -->
+    <string name="alw_log_exercise">Log Exercise</string>
 
     <!-- Error Messages -->
     <string name="init_error">There was a problem initializing the app... sorry.</string>
