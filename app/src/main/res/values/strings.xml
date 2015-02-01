@@ -8,10 +8,7 @@
     <string name="ah_workout_progress">Progress</string>
 
     <!-- Exercises Messages -->
-    <string name="delete_exercise_title">Delete %s</string>
-    <string name="delete_exercise_message">Are you sure you want to delete \'%s\'?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="new_exercise_category">Create Category</string>
 
     <!-- Save Exercises -->
     <string name="name_hint">Exercise Name</string>

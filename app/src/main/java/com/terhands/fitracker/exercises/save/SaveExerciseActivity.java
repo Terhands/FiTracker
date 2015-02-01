@@ -8,12 +8,16 @@ import android.view.MenuItem;
 
 import com.terhands.fitracker.R;
 import com.terhands.fitracker.models.Exercise;
+import com.terhands.fitracker.models.ExerciseCategory;
+import com.terhands.fitracker.repository.ExerciseCategoryRepo;
 import com.terhands.fitracker.repository.ExerciseRepo;
 
 public class SaveExerciseActivity extends ActionBarActivity {
 
     public static final String EXTRA_EXERCISE_NAME = "EXTRA_EXERCISE_NAME";
+    public static final String EXTRA_EXERCISE_CATEGORY_NAME = "EXTRA_EXERCISE_CATEGORY_NAME";
 
+    private ExerciseCategoryRepo exerciseCategoryRepo;
     private ExerciseRepo exerciseRepo;
     private Exercise exercise;
     private SaveExerciseViewController controller;
@@ -23,6 +27,7 @@ public class SaveExerciseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_exercise);
 
+        exerciseCategoryRepo = new ExerciseCategoryRepo(this);
         exerciseRepo = new ExerciseRepo(this);
         controller = new SaveExerciseViewController(this);
 
@@ -38,13 +43,13 @@ public class SaveExerciseActivity extends ActionBarActivity {
 
         if(exercise != null) {
             controller.initState(exercise);
-        } else {
-            exercise = new Exercise();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_save_exercise, menu);
         return super.onCreateOptionsMenu(menu);
@@ -65,10 +70,31 @@ public class SaveExerciseActivity extends ActionBarActivity {
     }
 
     private void saveExercise() {
-        String oldName = exercise.getName();
+        if(getIntent().getStringExtra(EXTRA_EXERCISE_CATEGORY_NAME) != null) {
+            createNewExercise();
+        } else {
+            updateExercise();
+        }
+    }
+
+    private void updateExercise() {
+        String oldName = null;
+        if(exercise != null) {
+            oldName = exercise.getName();
+        }
+
         exercise = new Exercise();
         exercise.setProperties(controller.getSelectedProperties());
         exercise.setName(controller.getExerciseName());
-        exerciseRepo.save(oldName, exercise);
+        exercise = exerciseRepo.save(oldName, exercise);
+    }
+
+    private void createNewExercise() {
+        updateExercise();
+
+        String categoryName = getIntent().getStringExtra(EXTRA_EXERCISE_CATEGORY_NAME);
+        ExerciseCategory exerciseCategory = exerciseCategoryRepo.getExerciseCategoryByName(categoryName);
+        exerciseCategory.getExercises().add(exercise);
+        exerciseCategoryRepo.save(categoryName, exerciseCategory);
     }
 }

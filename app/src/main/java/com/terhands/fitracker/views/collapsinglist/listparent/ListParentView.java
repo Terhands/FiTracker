@@ -3,12 +3,12 @@ package com.terhands.fitracker.views.collapsinglist.listparent;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListParentView extends Button {
+public class ListParentView extends RelativeLayout {
 
     private List<OnClickListener> listeners = new ArrayList<>();
 

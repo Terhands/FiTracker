@@ -14,7 +14,11 @@ public class ExerciseRepo extends BaseRepo<Exercise> {
     }
 
     public Exercise getByName(String name) {
-        return realm.where(Exercise.class).equalTo("name", name).findFirst();
+        if(name == null) {
+            return null;
+        } else {
+            return realm.where(Exercise.class).equalTo("name", name).findFirst();
+        }
     }
 
     @Override

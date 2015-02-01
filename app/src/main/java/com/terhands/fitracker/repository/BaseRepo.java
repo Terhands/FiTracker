@@ -19,17 +19,19 @@ public abstract class BaseRepo<T extends RealmObject> {
         realm.commitTransaction();
     }
 
-    public void save(String key, T updatedObject) {
+    public T save(String key, T updatedObject) {
         realm.beginTransaction();
 
         T savedObject = getSavedRealmObject(key);
         if(savedObject != null) {
             updateValues(updatedObject, savedObject);
         } else {
-            realm.copyToRealm(updatedObject);
+            savedObject = realm.copyToRealm(updatedObject);
         }
 
         realm.commitTransaction();
+
+        return savedObject;
     }
 
     protected abstract T getSavedRealmObject(String key);

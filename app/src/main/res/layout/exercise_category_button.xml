@@ -5,8 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
-    android:padding="10dp"
     android:textSize="18sp"
-    android:textColor="@color/selector_text_primary"
-    android:background="@drawable/selector_category"
-    android:gravity="left|center_vertical"/>
+    android:background="@drawable/selector_category">
+
+    <TextView
+        android:id="@+id/ecb_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:duplicateParentState="true"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/selector_text_primary"
+        android:background="@null"
+        android:gravity="left|center_vertical"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/eb_text"
+        android:layout_alignBottom="@+id/eb_text"
+        android:gravity="right|center_vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/ecb_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:visibility="invisible">
+
+            <ImageButton
+                android:id="@+id/ecb_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@android:drawable/ic_menu_edit" />
+
+            <ImageButton
+                android:id="@+id/ecb_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@android:drawable/ic_delete" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ecb_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_add" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_gray"/>
+
+</com.terhands.fitracker.views.collapsinglist.listparent.ListParentView>
