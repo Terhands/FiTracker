@@ -76,28 +76,35 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
         Realm realm = Realm.getInstance(this);
         RealmResults<ExerciseCategory> categories = realm.where(ExerciseCategory.class)
                                                          .findAllSorted("name");
-
         for(ExerciseCategory category : categories) {
-
-            ListParentView header = (ListParentView) LayoutInflater.from(this).inflate(R.layout.exercise_category_button, null, false);
-            ListChildView container = (ListChildView) LayoutInflater.from(this).inflate(R.layout.exercises_container, null, false);
-            ExerciseCategoryViewController categoryViewController = new ExerciseCategoryViewController(header, container);
-            categoryViewController.showCategoryName(category);
-            categoryViewController.setOnLongClickListener(onExerciseCategoryLongClicked(categoryViewController));
-            categoryViewController.setEditButtonListsners(onCategoryAddClick(category), onCategoryEditClick(category), onCategoryDeleteClick(category));
-
-            for(Exercise exercise : category.getExercises()) {
-                View exerciseView = LayoutInflater.from(this).inflate(R.layout.exercise_button, null, false);
-                ExerciseViewController holder = new ExerciseViewController(exerciseView);
-
-                holder.showExerciseName(exercise);
-                holder.setTopLevelListeners(onExerciseClick(exercise), onExerciseLongClick(holder));
-                holder.setExerciseManagerListeners(onExerciseEditClick(exercise), onExerciseDeleteClick(exercise, holder));
-                categoryViewController.addExerciseView(holder);
-            }
-
-            new CollapsingListView(mainView, header, container, false);
+            buildCollapsingExercisesList(category, mainView);
         }
+    }
+
+    private void buildCollapsingExercisesList(ExerciseCategory category, LinearLayout mainView) {
+        ListParentView header = (ListParentView) LayoutInflater.from(this).inflate(R.layout.exercise_category_button, null, false);
+        ListChildView container = (ListChildView) LayoutInflater.from(this).inflate(R.layout.exercises_container, null, false);
+
+        ExerciseCategoryViewController categoryViewController = new ExerciseCategoryViewController(header, container);
+        categoryViewController.showCategoryName(category);
+        categoryViewController.setOnLongClickListener(onExerciseCategoryLongClicked(categoryViewController));
+        categoryViewController.setEditButtonListsners(onCategoryAddClick(category), onCategoryEditClick(category), onCategoryDeleteClick(category));
+
+        for(Exercise exercise : category.getExercises()) {
+            buildExerciseView(exercise, categoryViewController);
+        }
+
+        new CollapsingListView(mainView, header, container, false);
+    }
+
+    private void buildExerciseView(Exercise exercise, ExerciseCategoryViewController controller) {
+        View exerciseView = LayoutInflater.from(this).inflate(R.layout.exercise_button, null, false);
+        ExerciseViewController holder = new ExerciseViewController(exerciseView);
+
+        holder.showExerciseName(exercise);
+        holder.setTopLevelListeners(onExerciseClick(exercise), onExerciseLongClick(holder));
+        holder.setExerciseManagerListeners(onExerciseEditClick(exercise), onExerciseDeleteClick(exercise, holder));
+        controller.addExerciseView(holder);
     }
 
     private View.OnClickListener onCategoryAddClick(final ExerciseCategory category) {
