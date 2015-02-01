@@ -62,7 +62,8 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
                 finish();
                 break;
             case R.id.meb_create:
-                // TODO create a new category
+                SaveExerciseCategoryDialog saveDialog = new SaveExerciseCategoryDialog(this);
+                saveDialog.buildCategoryEditDialog(null).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -88,7 +89,9 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
         ExerciseCategoryViewController categoryViewController = new ExerciseCategoryViewController(header, container);
         categoryViewController.showCategoryName(category);
         categoryViewController.setOnLongClickListener(onExerciseCategoryLongClicked(categoryViewController));
-        categoryViewController.setEditButtonListsners(onCategoryAddClick(category), onCategoryEditClick(category), onCategoryDeleteClick(category));
+        categoryViewController.setEditButtonListsners(onCategoryAddClick(category),
+                                                      onCategoryEditClick(category),
+                                                      onCategoryDeleteClick(categoryViewController, category));
 
         for(Exercise exercise : category.getExercises()) {
             buildExerciseView(exercise, categoryViewController);
@@ -119,14 +122,21 @@ public abstract class BaseExercisesActivity extends ActionBarActivity {
     }
 
     private View.OnClickListener onCategoryEditClick(final ExerciseCategory category) {
-        return null;
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveExerciseCategoryDialog saveDialog = new SaveExerciseCategoryDialog(BaseExercisesActivity.this);
+                saveDialog.buildCategoryEditDialog(category).show();
+            }
+        };
     }
 
-    private View.OnClickListener onCategoryDeleteClick(final ExerciseCategory category) {
+    private View.OnClickListener onCategoryDeleteClick(final ExerciseCategoryViewController controller, final ExerciseCategory category) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 exerciseCategoryRepo.delete(category);
+                controller.animateOut();
             }
         };
     }

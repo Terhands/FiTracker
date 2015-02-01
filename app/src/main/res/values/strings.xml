@@ -9,10 +9,12 @@
 
     <!-- Exercises Messages -->
     <string name="new_exercise_category">Create Category</string>
+    <string name="new_category_hint">Exercise Category Name</string>
 
     <!-- Save Exercises -->
     <string name="name_hint">Exercise Name</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Error Messages -->
     <string name="init_error">There was a problem initializing the app... sorry.</string>

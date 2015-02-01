@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.terhands.fitracker.R;
 import com.terhands.fitracker.models.ExerciseCategory;
+import com.terhands.fitracker.views.collapsinglist.CLVAnimationUtils;
 import com.terhands.fitracker.views.collapsinglist.listchild.ListChildView;
 import com.terhands.fitracker.views.collapsinglist.listparent.ListParentView;
 
@@ -63,5 +64,10 @@ public class ExerciseCategoryViewController {
         } else {
             editButtonsContainer.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void animateOut() {
+        CLVAnimationUtils.collapse(exerciseCategory, 300);
+        CLVAnimationUtils.collapse(exerciseContainer, 300);
     }
 }
