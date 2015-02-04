@@ -27,4 +27,19 @@
 
     <!-- Asset locations -->
     <string name="asset_exercises">exercises.json</string>
+
+    <!-- Properties -->
+    <string name="weight_label">Weight:</string>
+    <string name="weight_hint">lbs</string>
+
+    <string name="reps_label">Reps:</string>
+    <string name="sets_label">Sets:</string>
+
+    <string name="duration_label">Duration:</string>
+    <string name="duration_hint_hours">hh</string>
+    <string name="duration_hint_minutes">mm</string>
+    <string name="duration_hint_seconds">ss</string>
+
+    <string name="distance_label">Distance:</string>
+    <string name="distance_hint">km</string>
 </resources>

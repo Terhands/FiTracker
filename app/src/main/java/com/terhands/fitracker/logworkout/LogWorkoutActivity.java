@@ -1,5 +1,6 @@
 package com.terhands.fitracker.logworkout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import com.terhands.fitracker.Constants;
 import com.terhands.fitracker.R;
 import com.terhands.fitracker.exercises.list.SelectExerciseActivity;
+import com.terhands.fitracker.logworkout.exercisedialog.ExerciseDialogBuilder;
 import com.terhands.fitracker.models.Exercise;
 import com.terhands.fitracker.models.Workout;
 import com.terhands.fitracker.models.WorkoutExercise;
@@ -93,10 +95,31 @@ public class LogWorkoutActivity extends ActionBarActivity {
         if(requestCode == CODE_REQUEST_EXERCISE && resultCode == RESULT_OK) {
             String exerciseName = data.getStringExtra(SelectExerciseActivity.EXTRA_EXERCISE_NAME);
             Exercise exercise = exerciseRepo.getByName(exerciseName);
+
             WorkoutExercise workoutExercise = new WorkoutExercise();
             workoutExercise.setExercise(exercise);
-            adapter.addWorkoutExercise(workoutExercise);
+
+            addWorkoutExercise(workoutExercise);
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void addWorkoutExercise(WorkoutExercise workoutExercise) {
+
+        ExerciseDialogBuilder builder = new ExerciseDialogBuilder(this);
+        builder.showWorkoutExerciseDialog(workoutExercise, onSaveExercise);
+    }
+
+    private ExerciseDialogBuilder.ExerciseDialogCallback onSaveExercise = new ExerciseDialogBuilder.ExerciseDialogCallback() {
+        @Override
+        public DialogInterface.OnClickListener onSave(final WorkoutExercise workoutExercise, final View dialogView) {
+            return new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    adapter.addWorkoutExercise(workoutExercise);
+                }
+            };
+        }
+    };
 }
