@@ -1,6 +1,5 @@
 package com.terhands.fitracker.logworkout;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -107,19 +106,14 @@ public class LogWorkoutActivity extends ActionBarActivity {
 
     private void addWorkoutExercise(WorkoutExercise workoutExercise) {
 
-        ExerciseDialogBuilder builder = new ExerciseDialogBuilder(this);
-        builder.showWorkoutExerciseDialog(workoutExercise, onSaveExercise);
+        ExerciseDialogBuilder builder = new ExerciseDialogBuilder(this, onSaveExercise);
+        builder.showWorkoutExerciseDialog(workoutExercise);
     }
 
     private ExerciseDialogBuilder.ExerciseDialogCallback onSaveExercise = new ExerciseDialogBuilder.ExerciseDialogCallback() {
         @Override
-        public DialogInterface.OnClickListener onSave(final WorkoutExercise workoutExercise, final View dialogView) {
-            return new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    adapter.addWorkoutExercise(workoutExercise);
-                }
-            };
+        public void onSave(final WorkoutExercise workoutExercise) {
+            adapter.addWorkoutExercise(workoutExercise);
         }
     };
 }

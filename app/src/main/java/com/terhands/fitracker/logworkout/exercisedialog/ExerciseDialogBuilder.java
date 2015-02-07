@@ -12,19 +12,25 @@ import com.terhands.fitracker.models.WorkoutExercise;
 public class ExerciseDialogBuilder {
 
     private final Context context;
+    private ExerciseDialogViewController controller;
+    private ExerciseDialogCallback callback;
 
-    public ExerciseDialogBuilder(Context context) {
+    public ExerciseDialogBuilder(Context context, ExerciseDialogCallback callback) {
         this.context = context;
+        this.callback = callback;
     }
 
-    public void showWorkoutExerciseDialog(WorkoutExercise exercise, ExerciseDialogCallback callback) {
+    public void showWorkoutExerciseDialog(WorkoutExercise exercise) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_save_workout_exercise, null);
+
+        controller = new ExerciseDialogViewController(exercise, view);
+        controller.setPropertyVisibility();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(exercise.getExercise().getName());
         builder.setView(view);
-        builder.setPositiveButton(R.string.save, callback.onSave(exercise, view));
+        builder.setPositiveButton(R.string.save, onSave(exercise));
         builder.setNegativeButton(R.string.cancel, onCancel);
         builder.show();
     }
@@ -37,7 +43,15 @@ public class ExerciseDialogBuilder {
     };
 
     public interface ExerciseDialogCallback {
-        public DialogInterface.OnClickListener onSave(WorkoutExercise exercise, View dialogView);
+        public void onSave(WorkoutExercise exercise);
     }
 
+    private DialogInterface.OnClickListener onSave(final WorkoutExercise exercise) {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                callback.onSave(exercise);
+            }
+        };
+    }
 }
