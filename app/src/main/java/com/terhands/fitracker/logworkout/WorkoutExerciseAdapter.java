@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.terhands.fitracker.R;
+import com.terhands.fitracker.models.PropertyValue;
 import com.terhands.fitracker.models.WorkoutExercise;
 
 import java.util.ArrayList;
@@ -70,8 +71,12 @@ public class WorkoutExerciseAdapter extends BaseAdapter {
     private void populateCell(ViewHolder holder, int position) {
         WorkoutExercise exercise = getItem(position);
         holder.name.setText(exercise.getExercise().getName());
-
-        // TODO: add property display for properties in this exercise
+        holder.propertiesContainer.removeAllViews();
+        for(PropertyValue propertyValue : exercise.getValues()) {
+            TextView property = new TextView(context);
+            property.setText(propertyValue.getTrackedProperty().getName() + ": " + propertyValue.getDisplayValue());
+            holder.propertiesContainer.addView(property);
+        }
     }
 
     private class ViewHolder {

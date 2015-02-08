@@ -5,12 +5,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.terhands.fitracker.R;
+import com.terhands.fitracker.models.PropertyValue;
 import com.terhands.fitracker.models.TrackingProperty;
 import com.terhands.fitracker.models.TrackingProperty.Property;
 import com.terhands.fitracker.models.WorkoutExercise;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmList;
 
 public class ExerciseDialogViewController {
 
@@ -32,9 +35,22 @@ public class ExerciseDialogViewController {
         }
     }
 
+    public RealmList<PropertyValue> getTrackedProperties() {
+        RealmList<PropertyValue> values = new RealmList<>();
+
+        for(TrackingProperty property : state.visibleProperties) {
+            PropertyValue value = new PropertyValue();
+            value.setTrackedProperty(property);
+            value.setValue(holder.getValue(property.getProperty()));
+            values.add(value);
+        }
+
+        return values;
+    }
+
     protected class ViewState {
 
-        private List<TrackingProperty> visibleProperties;
+        public final List<TrackingProperty> visibleProperties;
 
         public ViewState(WorkoutExercise exercise) {
             visibleProperties = exercise.getExercise().getProperties();
@@ -77,6 +93,51 @@ public class ExerciseDialogViewController {
             durationMinutes = (EditText) v.findViewById(R.id.dswe_minutes_input);
             durationSeconds = (EditText) v.findViewById(R.id.dswe_seconds_input);
             distance = (EditText) v.findViewById(R.id.dswe_distance_input);
+        }
+
+        public int getValue(Property property) {
+            switch(property) {
+                case WEIGHT:
+                    return convertToValue(weight.getText().toString());
+                case REPS:
+                    return convertToValue(reps.getText().toString());
+                case SETS:
+                    return convertToValue(sets.getText().toString());
+                case DISTANCE:
+                    return convertDistanceToValue(distance.getText().toString());
+                case DURATION:
+                    String hours = durationHours.getText().toString();
+                    String minutes = durationMinutes.getText().toString();
+                    String seconds = durationSeconds.getText().toString();
+                    return convertDurationToValue(hours, minutes, seconds);
+                default:
+                    return 0;
+            }
+        }
+
+        private int convertToValue(String valueString) {
+            if(valueString != null && valueString.length() > 0) {
+                try {
+                    return Integer.parseInt(valueString);
+                } catch(NumberFormatException e) { }
+            }
+            return 0;
+        }
+
+        private int convertDistanceToValue(String valueString) {
+            if(valueString != null && valueString.length() > 0) {
+                try {
+                    // TODO move this to a utility - convert to meters from km
+                    return (int) Math.ceil(Double.parseDouble(valueString) * 1000);
+                } catch(NumberFormatException e) { }
+            }
+            return 0;
+        }
+
+        private int convertDurationToValue(String hours, String minutes, String seconds) {
+            return convertToValue(seconds) +
+                    (convertToValue(minutes) * 60) +
+                    (convertToValue(hours) * 60 * 60);
         }
     }
 }

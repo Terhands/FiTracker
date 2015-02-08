@@ -50,6 +50,7 @@ public class ExerciseDialogBuilder {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                exercise.setValues(controller.getTrackedProperties());
                 callback.onSave(exercise);
             }
         };
