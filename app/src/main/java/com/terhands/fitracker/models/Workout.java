@@ -1,5 +1,8 @@
 package com.terhands.fitracker.models;
 
+import com.terhands.fitracker.Constants;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.realm.RealmList;
@@ -24,5 +27,9 @@ public class Workout extends RealmObject{
 
     public void setExercises(RealmList<WorkoutExercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public String getFormattedDate() {
+        return new SimpleDateFormat(Constants.DATE_FORMAT).format(getExerciseDate());
     }
 }

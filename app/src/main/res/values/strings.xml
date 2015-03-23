@@ -42,4 +42,6 @@
 
     <string name="distance_label">Distance:</string>
     <string name="distance_hint">km</string>
+
+    <string name="workout_label">Workout: </string>
 </resources>

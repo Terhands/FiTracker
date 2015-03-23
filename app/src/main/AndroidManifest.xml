@@ -41,6 +41,18 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".history.PastWorkoutsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".history.WorkoutDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>
